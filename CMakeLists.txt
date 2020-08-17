@@ -25,7 +25,7 @@ endif()
 # setup build flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-write-strings -Wno-deprecated-declarations")	# -std=c++14 
 set(BUILD_DEPS "YES" CACHE BOOL "If YES, will install dependencies into sandbox.  Automatically reset to NO after dependencies are installed.")
-set(BUILD_INTERACTIVE "YES" CACHE BOOL "If NO, will download/install the default DNN models without prompting the user, and skip installation of PyTorch.")
+set(BUILD_INTERACTIVE "NO" CACHE BOOL "If NO, will download/install the default DNN models without prompting the user, and skip installation of PyTorch.")
 set(BUILD_EXPERIMENTAL "NO" CACHE BOOL "If YES, will enable support for experimental DNNs, examples, and plugins")
 
 
@@ -166,7 +166,7 @@ add_subdirectory(python)
 
 
 # set linker options
-target_link_libraries(jetson-inference jetson-utils nvinfer nvinfer_plugin nvcaffe_parser)
+target_link_libraries(jetson-inference jetson-utils nvinfer nvinfer_plugin nvparsers)
 
 if(CUDA_VERSION_MAJOR GREATER 9)
 	target_link_libraries(jetson-inference nvonnxparser)
